@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AppProject.Views"
+             x:Class="AppProject.Views.SignInPage"
+             x:DataType="views:SignInPage"
+             Title="SignIn"
+             BackgroundColor="#1E1E2D">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20"
+                             Padding="30"
+                             VerticalOptions="Center"
+                             MaximumWidthRequest="420">
+
+            <!-- Title -->
+            <Label Text="Sign In"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="0,0,0,10" />
+
+            <!-- Email Entry -->
+            <Border Stroke="#3F3F5A"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="12,4"
+                    BackgroundColor="#2B2B3E">
+                <Entry x:Name="UsernameEntry"
+                       Keyboard="Email"
+                       FontSize="18"
+                       Placeholder="Email"
+                       PlaceholderColor="#8E8EA9"
+                       TextColor="Wheat"
+                       ReturnType="Next"
+                       Text="{Binding UserName}" />
+            </Border>
+
+            <!-- Password Entry with Toggle Button -->
+            <Border Stroke="#3F3F5A"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="12,4"
+                    BackgroundColor="#2B2B3E">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Entry x:Name="PasswordEntry"
+                           Grid.Column="0"
+                           BackgroundColor="Transparent"
+                           FontSize="18"
+                           IsPassword="{Binding EntryAsPassword}"
+                           Placeholder="סיסמה"
+                           PlaceholderColor="#8E8EA9"
+                           TextColor="Wheat"
+                           VerticalOptions="Center"
+                           Text="{Binding UserPassword}" />
+
+                    <Button x:Name="TogglePassordButton"
+                            Grid.Column="1"
+                            Clicked="TogglePassordButtonClicked"
+                            Margin="5,0,0,0"
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            FontSize="24"
+                            HorizontalOptions="End"
+                            FontFamily="MaterialIcons"
+                            TextColor="White"
+                            VerticalOptions="Center"
+                            Text="{Binding PasswordIconCode}" />
+                </Grid>
+            </Border>
+
+            <!-- Sign In Button -->
+            <Button CornerRadius="8"
+                    FontSize="18"
+                    HeightRequest="50"
+                    Text="SignIn"
+                    TextColor="White"
+                    BackgroundColor="#512BD4"
+                    IsEnabled="{Binding IsSignInButtonEnabled}"
+                    Clicked="OnSignInButtonClick"
+                    Margin="0,10,0,0" />
+
+            <!-- Feedback / Error Message -->
+            <Label x:Name="messageLabel"
+                   FontSize="28"
+                   HorizontalTextAlignment="Center"
+                   IsVisible="{Binding SignInMessageVisible}"
+                   Text="{Binding LoginMessage}"
+                   TextColor="{Binding SignInMessageColor}"
+                   Margin="0,10,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+
