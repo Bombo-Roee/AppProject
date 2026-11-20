@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:AppProject.Views"
+             xmlns:viewmodels="clr-namespace:AppProject.ViewModels"
              x:Class="AppProject.Views.SignInPage"
-             x:DataType="views:SignInPage"
+             x:DataType="viewmodels:SignInViewModel"
              Title="SignIn">
 
     <ContentPage.Background>
@@ -29,7 +29,7 @@
                        Keyboard="Email"
                        FontSize="18"
                        Placeholder="Email"
-                       PlaceholderColor="#444"
+                       PlaceholderColor="#555"
                        TextColor="Wheat"
                        ReturnType="Go"
                        Text="{Binding UserName}" />
@@ -49,14 +49,14 @@
                            FontSize="18"
                            IsPassword="{Binding EntryAsPassword}"
                            Placeholder="סיסמה"
-                           PlaceholderColor="#444"
+                           PlaceholderColor="#555"
                            TextColor="Wheat"
                            VerticalOptions="Center"
                            Text="{Binding UserPassword}" />
 
                     <Button x:Name="TogglePassordButton"
                             Grid.Column="1"
-                            Clicked="TogglePassordButtonClicked"
+                            Command="{Binding ShowPasswordCommand}"
                             Margin="5,0,0,0"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -69,14 +69,13 @@
                 </Grid>
             </Border>
 
-            <!-- כפתור התחברות Submit -->
-            <Button CornerRadius="8"
+            <!-- כפתור התחברות Submit עם Command -->
+            <Button Command="{Binding SignInCommand}"
+                    CornerRadius="8"
                     FontSize="18"
                     HeightRequest="50"
-                    IsEnabled="{Binding IsSignInButtonEnabled}"
                     Text="SignIn"
-                    TextColor="White"
-                    Clicked="OnSignInButtonClick" />
+                    TextColor="White" />
 
             <!-- הודעת שגיאה / התחברות -->
             <Label x:Name="messageLabel"
