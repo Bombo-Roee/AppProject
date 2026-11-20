@@ -1,5 +1,6 @@
 using Foundation;
 using Microsoft.Maui;
+using UIKit;
 
 namespace AppProject;
 
@@ -7,4 +8,3 @@ namespace AppProject;
 public class SceneDelegate : MauiUISceneDelegate
 {
 }
-

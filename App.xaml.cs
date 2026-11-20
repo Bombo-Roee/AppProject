@@ -1,4 +1,4 @@
-﻿namespace AppProject;
+namespace AppProject;
 
 public partial class App : Application
 {
