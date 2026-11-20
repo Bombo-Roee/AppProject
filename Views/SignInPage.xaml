@@ -4,53 +4,61 @@
              xmlns:views="clr-namespace:AppProject.Views"
              x:Class="AppProject.Views.SignInPage"
              x:DataType="views:SignInPage"
-             Title="SignIn"
-             BackgroundColor="#1E1E2D">
+             Title="SignIn">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#2A134D" />
+            <GradientStop Offset="0.5" Color="#1B173B" />
+            <GradientStop Offset="1.0" Color="#100C24" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20"
-                             Padding="30"
+        <VerticalStackLayout Padding="30"
+                             Spacing="20"
                              VerticalOptions="Center"
-                             MaximumWidthRequest="420">
+                             MaximumWidthRequest="400">
 
-            <!-- Title -->
-            <Label Text="Sign In"
-                   FontSize="32"
+            <!-- כותרת כניסה לפי הדוגמה -->
+            <Label Text="כניסה"
+                   FontSize="24"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center"
                    TextColor="White"
-                   Margin="0,0,0,10" />
+                   HorizontalOptions="Start"
+                   Margin="0,0,0,5" />
 
-            <!-- Email Entry -->
-            <Border Stroke="#3F3F5A"
-                    StrokeThickness="1"
+            <!-- EMAIL של שדה -->
+            <Border Padding="10"
+                    Stroke="#6B6B8A"
                     StrokeShape="RoundRectangle 8"
-                    Padding="12,4"
-                    BackgroundColor="#2B2B3E">
+                    StrokeThickness="1"
+                    BackgroundColor="Transparent">
                 <Entry x:Name="UsernameEntry"
                        Keyboard="Email"
                        FontSize="18"
                        Placeholder="Email"
-                       PlaceholderColor="#8E8EA9"
+                       PlaceholderColor="#8888A0"
                        TextColor="Wheat"
                        ReturnType="Next"
                        Text="{Binding UserName}" />
             </Border>
 
-            <!-- Password Entry with Toggle Button -->
-            <Border Stroke="#3F3F5A"
-                    StrokeThickness="1"
+            <!-- שדה של סיסמה עם כפתור TogglePassword -->
+            <Border Padding="10"
+                    Stroke="#6B6B8A"
                     StrokeShape="RoundRectangle 8"
-                    Padding="12,4"
-                    BackgroundColor="#2B2B3E">
-                <Grid ColumnDefinitions="*,Auto">
+                    StrokeThickness="1"
+                    BackgroundColor="Transparent">
+                <Grid ColumnDefinitions="*,Auto"
+                      VerticalOptions="Center">
                     <Entry x:Name="PasswordEntry"
                            Grid.Column="0"
                            BackgroundColor="Transparent"
                            FontSize="18"
                            IsPassword="{Binding EntryAsPassword}"
                            Placeholder="סיסמה"
-                           PlaceholderColor="#8E8EA9"
+                           PlaceholderColor="#8888A0"
                            TextColor="Wheat"
                            VerticalOptions="Center"
                            Text="{Binding UserPassword}" />
@@ -70,28 +78,26 @@
                 </Grid>
             </Border>
 
-            <!-- Sign In Button -->
+            <!-- כפתור כניסה (SignIn) - מתחיל Disable והופך ל-Enable כששני השדות לא ריקים -->
             <Button CornerRadius="8"
                     FontSize="18"
                     HeightRequest="50"
                     Text="SignIn"
                     TextColor="White"
-                    BackgroundColor="#512BD4"
                     IsEnabled="{Binding IsSignInButtonEnabled}"
                     Clicked="OnSignInButtonClick"
                     Margin="0,10,0,0" />
 
-            <!-- Feedback / Error Message -->
+            <!-- הודעת התחברות / שגיאת התחברות -->
             <Label x:Name="messageLabel"
-                   FontSize="28"
+                   FontSize="30"
                    HorizontalTextAlignment="Center"
                    IsVisible="{Binding SignInMessageVisible}"
                    Text="{Binding LoginMessage}"
                    TextColor="{Binding SignInMessageColor}"
-                   Margin="0,10,0,0" />
+                   Margin="0,15,0,0" />
 
         </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>
-
