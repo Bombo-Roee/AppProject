@@ -6,6 +6,7 @@ namespace AppProject.ViewModels;
 
 public class SignInViewModel : ViewModelBase
 {
+    #region Properties
     private readonly DBMokup _db;
     private string _userName = string.Empty;
     private string _password = string.Empty;
@@ -14,7 +15,57 @@ public class SignInViewModel : ViewModelBase
     private Color _signInMessageColor = Colors.Red;
     private bool _entryAsPassword;
     private string _passwordIconCode = string.Empty;
+    #endregion
 
+    #region Constructor
+    public SignInViewModel()
+    {
+        _entryAsPassword = true;
+        _passwordIconCode = FontHelper.CLOSED_EYE_ICON;
+        _signInMessageVisible = false;
+        _loginMessage = string.Empty;
+        _signInMessageColor = Colors.Red;
+        _db = new DBMokup();
+
+        ShowPasswordCommand = new Command(TogglePassordButton);
+        SignInCommand = new Command(SignIn, () =>
+            !(string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(UserPassword)));
+    }
+    #endregion
+
+    #region Commands
+    public ICommand ShowPasswordCommand { get; }
+    public ICommand SignInCommand { get; }
+    #endregion
+
+    #region Private Methods
+    private void TogglePassordButton()
+    {
+        if (EntryAsPassword)
+            PasswordIconCode = FontHelper.CLOSED_EYE_ICON;
+        else
+            PasswordIconCode = FontHelper.OPEN_EYE_ICON;
+
+        EntryAsPassword = !EntryAsPassword;
+    }
+
+    private void SignIn()
+    {
+        SignInMessageVisible = true;
+        if (_db.IsExist(UserName, UserPassword))
+        {
+            LoginMessage = AppMessages.SignInMessageSuccess;
+            SignInMessageColor = Colors.Green;
+        }
+        else
+        {
+            LoginMessage = AppMessages.SignMessageFail;
+            SignInMessageColor = Colors.Red;
+        }
+    }
+    #endregion
+
+    #region Public Properties
     public string UserName
     {
         get => _userName;
@@ -150,3 +201,4 @@ public class SignInViewModel : ViewModelBase
         }
     }
 }
+
