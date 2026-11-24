@@ -1,6 +1,7 @@
 using System.Windows.Input;
 using AppProject.Helpers;
 using AppProject.Services;
+using AppProject.Views;
 
 namespace AppProject.ViewModels;
 
@@ -30,12 +31,14 @@ public class SignInViewModel : ViewModelBase
         ShowPasswordCommand = new Command(TogglePassordButton);
         SignInCommand = new Command(SignIn, () =>
             !(string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(UserPassword)));
+        NavigateToSignUpCommand = new Command(NavigateToSignUp);
     }
     #endregion
 
     #region Commands
     public ICommand ShowPasswordCommand { get; }
     public ICommand SignInCommand { get; }
+    public ICommand NavigateToSignUpCommand { get; }
     #endregion
 
     #region Private Methods
@@ -61,6 +64,14 @@ public class SignInViewModel : ViewModelBase
         {
             LoginMessage = AppMessages.SignMessageFail;
             SignInMessageColor = Colors.Red;
+        }
+    }
+
+    private void NavigateToSignUp()
+    {
+        if (Application.Current != null)
+        {
+            Application.Current.MainPage = new SignUpPage();
         }
     }
     #endregion

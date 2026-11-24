@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
 namespace AppProject;
@@ -9,12 +10,14 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
 				fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialSymbols 1");
+				fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialSymbolsFont");
 			});
 
 #if DEBUG
